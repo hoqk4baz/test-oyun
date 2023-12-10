@@ -44,7 +44,7 @@ class Handler(BaseHTTPRequestHandler):
         dark = ET.fromstring(xml_data)
         sonuc = dark.text
         if sonuc == "2":
-            return "[+] 2GB Alındı"
+            return "[+] 2GB Alındı Coder by_enza1903"
         elif sonuc == "1":
             return "[*] Kodu Zaten Kullanmışsın"
         elif sonuc == "0":
@@ -57,7 +57,7 @@ class Handler(BaseHTTPRequestHandler):
         dark = ET.fromstring(xml_data)
         sonuc = dark.text
         if sonuc == "2":
-            return "[+] 2GB Alındı"
+            return "[+] 2GB Alındı Coder by_enza1903"
         elif sonuc == "1":
             return "[*] Kodu Zaten Kullanmışsın"
         elif sonuc == "0":
