@@ -70,7 +70,7 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 def run_server(server_class=ThreadedHTTPServer, handler_class=Handler, port=3169):
     server_address = ("", port)
     httpd = server_class(server_address, handler_class)
-    print(f"Sunucu {port} portunda Çalışıyor...")
+    print(f"Sunucu {port} portunda ...")
     httpd.serve_forever()
 
 if __name__ == "__main__":
