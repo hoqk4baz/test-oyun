@@ -25,13 +25,13 @@ class Handler(BaseHTTPRequestHandler):
         post_params = urllib.parse.parse_qs(post_data.decode('utf-8'))
 
         if self.path == '/animal_nursery':
-            kod = post_params['kod'][0]
+            kod = post_params['animal_nursery_kod'][0]
             sonuc = self.use_code_animal_nursery(kod)
             self._set_response()
             self.wfile.write(sonuc.encode('utf-8'))
 
         elif self.path == '/car_club':
-            kod = post_params['kod'][0]
+            kod = post_params['car_club_kod'][0]
             sonuc = self.use_code_car_club(kod)
             self._set_response()
             self.wfile.write(sonuc.encode('utf-8'))
@@ -72,4 +72,3 @@ if __name__ == '__main__':
     server = ThreadedHTTPServer(('localhost', 8080), Handler)
     print('Server running on port 8080...')
     server.serve_forever()
-
