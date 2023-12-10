@@ -28,6 +28,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
                 <label for="code">Enter the numeric code:</label>
                 <input type="text" id="code" name="code" required>
+                <button type="submit" form="redeem-form">Redeem</button>
 
                 <p>{result}</p>
             </body>
@@ -69,13 +70,14 @@ class RequestHandler(BaseHTTPRequestHandler):
             <body>
                 <h1>Game Code Redemption</h1>
                 
-                <form method="post" action="/redeem">
+                <form method="post" action="/redeem" id="redeem-form">
                     <button type="submit" name="game_id" value="1">Animal Nursery</button>
                     <button type="submit" name="game_id" value="2">Car Club</button>
                 </form>
 
                 <label for="code">Enter the numeric code:</label>
                 <input type="text" id="code" name="code" required>
+                <button type="submit" form="redeem-form">Redeem</button>
 
                 <p>{result}</p>
             </body>
