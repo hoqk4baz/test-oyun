@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VF Oyun by_enza1903</title>
+    <title>Game Code Redemption</title>
     <style>
         body {
             background-color: #222;
@@ -24,12 +24,13 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         button {
-            background-color: #4CAF50;
+            background-color: #800080; /* Mor Renk */
             color: white;
             padding: 10px 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
         }
         input {
             padding: 8px;
@@ -45,6 +46,12 @@
         }
         #messages p {
             margin: 0;
+            color: #fff;
+        }
+        h1 {
+            font-size: 1.5em; /* Orta büyüklükte */
+            text-align: left; /* Solda hizalama */
+            margin-top: 0;
         }
     </style>
 </head>
@@ -54,14 +61,14 @@
         <form id="animalForm">
             <label for="animal_nursery_kod">Kodu Yapıştır:</label>
             <input type="text" id="animal_nursery_kod" name="animal_nursery_kod" required>
-            <button type="button" onclick="redeemCode('animal_nursery')">İnternet'i Kap</button>
+            <button type="button" onclick="redeemCode('animal_nursery')">Oyunu Başlat</button>
         </form>
 
         <h1>Car Club</h1>
         <form id="carForm">
             <label for="car_club_kod">Kodu Yapıştır:</label>
             <input type="text" id="car_club_kod" name="car_club_kod" required>
-            <button type="button" onclick="redeemCode('car_club')">İnternet'i Kap</button>
+            <button type="button" onclick="redeemCode('car_club')">Oyunu Başlat</button>
         </form>
 
         <div id="messages"></div>
