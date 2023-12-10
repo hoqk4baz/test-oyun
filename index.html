@@ -4,20 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Code Redemption</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #555;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #messages {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Anımal Nursery</h1>
-    <form action="/animal_nursery" method="post">
-        <label for="kod">Kodu Yapıştır:</label>
-        <input type="text" id="kod" name="kod" required>
-        <button type="submit">Oyunu Başlat</button>
-    </form>
+    <div class="container">
+        <h1>Anımal Nursery</h1>
+        <form id="animalForm">
+            <label for="kod">Kodu Yapıştır:</label>
+            <input type="text" id="kod" name="kod" required>
+            <button type="button" onclick="redeemCode('animal_nursery')">Oyunu Başlat</button>
+        </form>
 
-    <h1>Car Club</h1>
-    <form action="/car_club" method="post">
-        <label for="kod">Kodu Yapıştır:</label>
-        <input type="text" id="kod" name="kod" required>
-        <button type="submit">Oyunu Başlat</button>
-    </form>
+        <h1>Car Club</h1>
+        <form id="carForm">
+            <label for="kod">Kodu Yapıştır:</label>
+            <input type="text" id="kod" name="kod" required>
+            <button type="button" onclick="redeemCode('car_club')">Oyunu Başlat</button>
+        </form>
+
+        <div id="messages"></div>
+    </div>
+
+    <script>
+        function redeemCode(game) {
+            var kod = document.getElementById(game + '_kod').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '/' + game, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var messagesDiv = document.getElementById('messages');
+                    messagesDiv.innerHTML += '<p>' + xhr.responseText + '</p>';
+                }
+            };
+            xhr.send(game + '_kod=' + kod);
+        }
+    </script>
 </body>
 </html>
