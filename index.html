@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Code Redemption</title>
+    <title>VF Oyun by_enza1903</title>
     <style>
         body {
-            background-color: #333;
+            background-color: #222;
             color: #fff;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
         .container {
-            max-width: 600px;
-            margin: auto;
-            background-color: #555;
+            background-color: #333;
             padding: 20px;
             border-radius: 10px;
-            margin-top: 50px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         button {
             background-color: #4CAF50;
@@ -33,6 +38,13 @@
         }
         #messages {
             margin-top: 20px;
+            padding: 10px;
+            background-color: #000;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+        #messages p {
+            margin: 0;
         }
     </style>
 </head>
@@ -42,14 +54,14 @@
         <form id="animalForm">
             <label for="animal_nursery_kod">Kodu Yapıştır:</label>
             <input type="text" id="animal_nursery_kod" name="animal_nursery_kod" required>
-            <button type="button" onclick="redeemCode('animal_nursery')">Oyunu Başlat</button>
+            <button type="button" onclick="redeemCode('animal_nursery')">İnternet'i Kap</button>
         </form>
 
         <h1>Car Club</h1>
         <form id="carForm">
             <label for="car_club_kod">Kodu Yapıştır:</label>
             <input type="text" id="car_club_kod" name="car_club_kod" required>
-            <button type="button" onclick="redeemCode('car_club')">Oyunu Başlat</button>
+            <button type="button" onclick="redeemCode('car_club')">İnternet'i Kap</button>
         </form>
 
         <div id="messages"></div>
@@ -72,3 +84,4 @@
     </script>
 </body>
 </html>
+
