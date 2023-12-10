@@ -1,6 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from socketserver import ThreadingMixIn
-import threading
 import urllib.parse
 import requests
 import xml.etree.ElementTree as ET
@@ -44,7 +43,7 @@ class Handler(BaseHTTPRequestHandler):
         dark = ET.fromstring(xml_data)
         sonuc = dark.text
         if sonuc == "2":
-            return "[+] 2GB Alındı Coder by_enza1903"
+            return "[+] 2GB Alındı"
         elif sonuc == "1":
             return "[*] Kodu Zaten Kullanmışsın"
         elif sonuc == "0":
@@ -57,7 +56,7 @@ class Handler(BaseHTTPRequestHandler):
         dark = ET.fromstring(xml_data)
         sonuc = dark.text
         if sonuc == "2":
-            return "[+] 2GB Alındı Coder by_enza1903"
+            return "[+] 2GB Alındı"
         elif sonuc == "1":
             return "[*] Kodu Zaten Kullanmışsın"
         elif sonuc == "0":
@@ -68,7 +67,11 @@ class Handler(BaseHTTPRequestHandler):
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     pass
 
-if __name__ == '__main__':
-    server = ThreadedHTTPServer(('localhost', 8080), Handler)
-    print('Server running on port 8080...')
-    server.serve_forever()
+def run_server(server_class=ThreadedHTTPServer, handler_class=Handler, port=3169):
+    server_address = ("", port)
+    httpd = server_class(server_address, handler_class)
+    print(f"Sunucu {port} portunda Çalışıyor...")
+    httpd.serve_forever()
+
+if __name__ == "__main__":
+    run_server()
