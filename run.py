@@ -56,7 +56,7 @@ class Handler(BaseHTTPRequestHandler):
                 <div class="container">
                     <h1>İlgi ve Alakanız İçin Teşekkürler!</h1>
                     <p>Fazla yayıldığı için sistemi kapatıyorum.</p>
-                    <button onclick="redirectToTelegram()">TG Kanalı</button>
+                    <button onclick="redirectToTelegram()">TG GRUBUMUZ</button>
                 </div>
 
                 <script>
