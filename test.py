@@ -67,7 +67,7 @@ class Handler(BaseHTTPRequestHandler):
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     pass
 
-def run_server(server_class=ThreadedHTTPServer, handler_class=Handler, port=3169):
+def run_server(server_class=ThreadedHTTPServer, handler_class=Handler, port=3152):
     server_address = ("", port)
     httpd = server_class(server_address, handler_class)
     print(f"Sunucu {port} portunda ...")
