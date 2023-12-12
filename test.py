@@ -12,7 +12,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == '/':
-            with open('index.html', 'rb') as file:
+            with open('indexx.html', 'rb') as file:
                 self._set_response()
                 self.wfile.write(file.read())
         else:
