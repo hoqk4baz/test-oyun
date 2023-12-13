@@ -1,0 +1,54 @@
+import requests
+import random
+import string
+
+url = "https://bet-baywin-tr--prd--pl-sb.dtgapi.com/platform__api/rpc/sumstats.platform.player.command.register_player"
+
+# Kullanıcıdan telefon numarası isteniyor
+phone_number = input("Lütfen telefon numaranızı girin (örneğin: +37259607056): ")
+
+# Rastgele isim ve e-posta oluşturuluyor
+random_name = ''.join(random.choices(string.ascii_letters, k=8))
+random_email = f"{random_name}@example.com"
+print(random_name)
+headers = {
+    "Sec-Fetch-Site": "cross-site",
+    "Host": "bet-baywin-tr--prd--pl-sb.dtgapi.com",
+    "Sec-Fetch-Dest": "empty",
+    "Content-Length": "776",
+    "Referer": "https://17baywin.com/"
+}
+
+data = {
+    "honorific": "Mr",
+    "timeZone": "Europe/Istanbul",
+    "registrationConsent": True,
+    "currency": "TRY",
+    "securityQuestionAnswer": "Pizza",
+    "address": "",
+    "townCity": "",
+    "countryId": "cebdb406-cf21-11e9-a37b-0242ac13000a",
+    "username": random_name,
+    "name": "Ahmed",
+    "surname": "Celebi",
+    "email": random_email,
+    "phoneNumber": "+"+phone_number,
+    "password": "qazwsx11",
+    "formType": "register",
+    "dateOfBirth": "2000-03-05",
+    "securityQuestion": "En sevdiğiniz yemek nedir?",
+    "customerReferralLink": None,
+    "bonusId": "018ba3e5-3aa4-700a-beee-d3265e4bba68",
+    "selfProtectionBags": [],
+    "deviceInfo": {
+        "applicationVersion": "x.x.x",
+        "operatingSystem": "IOS",
+        "platform": "BROWSER",
+        "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1.2 Mobile/15E148 Safari/604.1"
+    }
+}
+
+response = requests.post(url, headers=headers, json=data).json()
+res = response["player"]["phoneVerificationToken"]["status"]
+
+print(res)
