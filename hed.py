@@ -86,7 +86,7 @@ def process_input(client, message, text):
 
         response = requests.post(url, headers=headers, data=data)
         proid = response.json().get('process_id')
-        print(response.status_code)
+        
         if proid == None:
         	client.send_message(chat_id, "🔓Hatalı Şifre veya Numara\nTekrar Kontrol et\n\n•Aşırı Şifre Deneme Durumunda'da\Bu Hata Meydana Gelebilir")
         	return welcome_message(client, message)
@@ -178,9 +178,9 @@ def vf_cark(client, chat_id):
     }
     cark_data = {"clientKey": "AC491770-B16A-4273-9CE7-CA790F63365E", "clientVersion": "16.8.3", "language": "tr","operatingSystem": "android"}
     cark_url = f"https://m.vodafone.com.tr/squat/getSquatMarketingProduct?sid={user_states[chat_id]['proid']}"
-    print(cark_url)
+    
     cark = requests.post(cark_url, headers=o_head, json=cark_data)
-    print(cark.json())
+    
     c1 = cark.json().get("data", {}).get("name")
     c2 = cark.json().get("data", {}).get("code")
 
@@ -209,11 +209,11 @@ def vf_oyun(client, chat_id):
     o_url = f"https://m.vodafone.com.tr/marketplace?method=participateCampaignBE&sid={user_states[chat_id]['proid']}"
     o_data = {"campaignID": 6873, "latitude": "0.0", "longitude": "0.0"}
     oyun = requests.post(o_url, headers=o_head, json=o_data).json().get("participateCampaign", {}).get("productData", {}).get("password")
-    print(oyun)
+    
 
     if oyun:
         xml_data = requests.get(f"https://vodafonecarclub.apphicgames.com/WebService1.asmx/Use_Code_AnimalNursery?code={oyun}&pin=app2022?*1", verify=False).text
-        print(xml_data)
+        
         dark = ET.fromstring(xml_data)
         sonuc = dark.text
 
