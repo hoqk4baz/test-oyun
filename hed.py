@@ -1,3 +1,4 @@
+
 import time
 import base64
 import requests
@@ -6,6 +7,9 @@ import xml.etree.ElementTree as ET
 from pyrogram import Client, filters, types
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import UserNotParticipant
+# SSL uyarısını kapatmak için bu importları ekleyin
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 API_ID = '27149351'
 API_HASH = '2edf2bdf7cb587effd7dc089f1989cb5'
@@ -209,6 +213,7 @@ def vf_oyun(client, chat_id):
 
     if oyun:
         xml_data = requests.get(f"https://vodafonecarclub.apphicgames.com/WebService1.asmx/Use_Code_AnimalNursery?code={oyun}&pin=app2022?*1", verify=False).text
+        print(xml_data)
         dark = ET.fromstring(xml_data)
         sonuc = dark.text
 
