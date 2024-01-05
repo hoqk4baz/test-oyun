@@ -1,4 +1,3 @@
-
 import time
 import base64
 import requests
@@ -7,7 +6,6 @@ import xml.etree.ElementTree as ET
 from pyrogram import Client, filters, types
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import UserNotParticipant
-# SSL uyarısını kapatmak için bu importları ekleyin
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -36,33 +34,36 @@ headers = {
 
 url = "https://m.vodafone.com.tr/maltgtwaycbu/api/"
 
-# Durumları (states) saklamak için bir sözlük
-user_states = {}
+# Kullanıcıların durumlarını saklamak için bir sözlük
+user_data = {}
 
-
+# Yardımcı fonksiyon: Kullanıcı durumlarına erişim sağlar
+def get_user_data(chat_id):
+    if chat_id not in user_data:
+        user_data[chat_id] = {'state': 'phone', 'telno': None, 'proid': None}
+    return user_data[chat_id]
 
 @app.on_message(filters.command("start"))
 def welcome_message(client, message):
     chat_id = message.chat.id
+    user_state = get_user_data(chat_id)
 
-    # Kullanıcının durumunu 'phone' olarak güncelle
-    user_states[chat_id] = {'state': 'phone', 'telno': None, 'proid': None}
+    user_state['state'] = 'phone'
+    user_state['telno'] = None
+    user_state['proid'] = None
 
     try:
-        # Kullanıcının grup üyesi olup olmadığını kontrol et
         user = client.get_chat_member("@by_darkenza", message.from_user.id).user
-
-        # Gruba üye ise hoş geldin mesajı gönder ve telefon numarası iste
-        welcome_text = f"Hoşgeldin {user.first_name}!\n\nTelefon numaranı 0' olmadan yaz"
-        print(f"{user.first_name} Botu Baslatti")
+        welcome_text = f"Hoşgeldin {user.first_name}!\n\nTelefon numaranı 0 olmadan yaz"
+        print(f"{user.first_name} Botu Başlattı")
         client.send_message(chat_id, welcome_text)
     except UserNotParticipant:
-        # Eğer kullanıcı grup üyesi değilse "Gruba Katıl" butonu ile davet et
         message_text = f"Hoş geldin {message.from_user.first_name}!\nSende ☬𝐃𝐀𝐑𝐊 | 𝐄𝐍𝐙𝐀☬'nın Ayrıcalıklı Dünyasına Katılarak Botu Kullanmaya Başlayabilirsin"
         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Gruba Katıl", url="https://t.me/by_darkenza")]])
-
         client.send_message(chat_id, message_text, reply_markup=reply_markup)
 
+# Geri kalan kodunuzu bu yapıya göre güncelleyebilirsiniz.
+# ...
 
 def process_input(client, message, text):
     chat_id = message.chat.id
