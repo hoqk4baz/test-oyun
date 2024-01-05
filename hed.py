@@ -205,6 +205,7 @@ def vf_oyun(client, chat_id):
     o_url = f"https://m.vodafone.com.tr/marketplace?method=participateCampaignBE&sid={user_states[chat_id]['proid']}"
     o_data = {"campaignID": 6873, "latitude": "0.0", "longitude": "0.0"}
     oyun = requests.post(o_url, headers=o_head, json=o_data).json().get("participateCampaign", {}).get("productData", {}).get("password")
+    print(oyun)
 
     if oyun:
         xml_data = requests.get(f"https://vodafonecarclub.apphicgames.com/WebService1.asmx/Use_Code_AnimalNursery?code={oyun}&pin=app2022?*1", verify=False).text
